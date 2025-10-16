@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palavra Mestre</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="game-container">
+        <header>
+            <div class="header-buttons left">
+                <button id="instructions-btn" class="header-btn">
+                    <svg class="header-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </button>
+                <button id="help-btn" class="header-btn">
+                    <svg class="header-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+            </div>
+            
+            <h1>Palavra Mestre</h1>
+            
+            <div class="header-buttons right">
+                <button id="hint-btn" class="header-btn">
+                    <svg class="header-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"></path>
+                        <path d="M8 21h8"></path>
+                        <path d="M12 17v4"></path>
+                    </svg>
+                </button>
+                <button id="difficulty-btn" class="header-btn medio">
+                    <svg class="header-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12M6 12l4-4M6 12l4 4M18 12l-4-4M18 12l-4 4"></path></svg>
+                </button>
+                <button id="theme-btn" class="header-btn">
+                    <svg class="header-icon sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="header-icon moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <main id="board-container">
+            <div id="game-board"></div>
+        </main>
+
+        <div id="keyboard-container"></div>
+    </div>
+
+    <div id="instructions-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" id="close-instructions-btn">&times;</button>
+            <h2>Como Jogar</h2>
+            <div class="instructions-text">
+                <p>Adivinhe a PALAVRA MESTRE em 6 tentativas.</p>
+                <p>Cada tentativa deve ser uma palavra válida de 5 letras. Pressione ENTER para enviar.</p>
+                <p>Após cada tentativa, a cor das letras mudará para mostrar o quão perto você chegou da palavra.</p>
+
+                <div class="example">
+                    <p><strong>Exemplos:</strong></p>
+                    <div class="example-row">
+                        <div class="example-tile correct">V</div>
+                        <div class="example-tile">E</div>
+                        <div class="example-tile">R</div>
+                        <div class="example-tile">B</div>
+                        <div class="example-tile">O</div>
+                    </div>
+                    <p>A letra <span class="example-letter">V</span> está na palavra e na posição correta.</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-row">
+                        <div class="example-tile">P</div>
+                        <div class="example-tile present">L</div>
+                        <div class="example-tile">E</div>
+                        <div class="example-tile">N</div>
+                        <div class="example-tile">A</div>
+                    </div>
+                    <p>A letra <span class="example-letter">L</span> está na palavra, mas na posição errada.</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-row">
+                        <div class="example-tile">T</div>
+                        <div class="example-tile">E</div>
+                        <div class="example-tile">R</div>
+                        <div class="example-tile">M</div>
+                        <div class="example-tile absent">O</div>
+                    </div>
+                    <p>A letra <span class="example-letter">O</span> não está na palavra em nenhuma posição.</p>
+                </div>
+                <p class="final-note">Uma nova PALAVRA MESTRE estará disponível a cada rodada!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" id="close-modal-btn">&times;</button>
+            <h2>Créditos</h2>
+            <p>Para dúvidas, sugestões ou feedback, entre em contato:</p>
+            <p class="email-text">palavramestre40@gmail.com</p>
+        </div>
+    </div>
+
+    <div id="end-game-modal" class="modal">
+        <div class="modal-content">
+            <h2>Fim de Jogo!</h2>
+            <p id="end-game-message"></p>
+            <p class="end-game-word">A palavra era: <span id="final-word"></span></p>
+            <div class="definition-container">
+                <h4>Significado:</h4>
+                <p id="word-definition"></p>
+            </div>
+            <button id="new-game-button" class="sidenav-button">Novo Jogo</button>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="palavras.js"></script>
+    <script src="dicionario.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
